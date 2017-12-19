@@ -230,6 +230,8 @@ cmd_close() {
 	[[ -e "$_tomb_file" ]] || _die "There is no password tomb to close."
 	_tomb_name="${_tomb_file##*/}"
 	_tomb_name="${_tomb_name%.*}"
+	# 2017-12-19: (lb): Truncate to 16 characters, which is what tomb does:
+	_tomb_name="${_tomb_name:0:16}"
 	[[ -z "$_tomb_name" ]] && _die "There is no password tomb."
 
 	_tmp_create
